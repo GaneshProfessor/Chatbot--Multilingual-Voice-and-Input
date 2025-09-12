@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import os
+from dotenv import load_dotenv
 from openai import OpenAI
 import pyttsx3
 import speech_recognition as sr
@@ -8,7 +9,8 @@ app = Flask(__name__)
 
 # Initialize OpenAI client with your API key
 Model = "gpt-3.5-turbo"
-api_key = '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'
+load_dotenv()  # reads the .env file
+api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI(api_key=api_key)
 
 # Map short codes to full language names

@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    background: #000;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#mouseCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.title {
+    font-size: 3em;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    margin-top: 1em;
+    color: rgba(255, 255, 255, 0.6);
+    opacity: 0;
+    animation: fadeIn 2s ease-in 1s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Add responsive design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2em;
+    }
+    .subtitle {     
+        font-size: 1em;
+    }
+} 

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <title>Ganesh | AI Assistant</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="static/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="static/android-chrome-512x512.png">
+    <link rel="manifest" href="static/site.webmanifest">
+
+</head>
+<body>
+    
+    <canvas id="mouseCanvas"></canvas>
+
+    <div id="welcomeScreen" class="welcome-screen">
+    <h1>WELCOME</h1>
+</div>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQXpRuSmWpQlaxbBoRDc53sC8QubcxJSwZbQ&s" 
+                     alt="" 
+                     class="avatar">
+                <h2>Ganesh</h2>
+                <p>Intelligent & Dynamic Assistant AI</p>
+            </div>
+            <div class="skills">
+                <span class="skill-item"><i class="fas fa-brain"></i> Machine Learning</span>
+                <span class="skill-item"><i class="fas fa-robot"></i> AI</span>
+                <span class="skill-item"><i class="fas fa-code"></i> Python</span>
+                <span class="skill-item"><i class="fa-solid fa-language"></i> Whisper</span>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header>
+                <h1 class="heading">Generative AI Project</h1>
+                <p class="description">Generative AI can be your All-in-One Assistant, from answering questions to engaging in casual conversations</p>
+            </header>
+            <div class="chat-area">
+                <form id="chatForm">
+                    <input type="text" 
+                           id="userInput" 
+                           name="text" 
+                           autocomplete="off" 
+                           placeholder="Type your message here...">
+                    <div class="button-group">
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit
+                        </button>
+                        <button type="button" onclick="startRecognition()">
+                            <i class="fas fa-microphone"></i>
+                            Voice
+                        </button>
+                        <select id="languageSelect" name="lang" aria-label="Language">
+      <option value="en">English</option>
+      <option value="hi">Hindi</option>
+    </select>
+                    </div>
+                </form>
+                <div id="responses"></div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('welcomeScreen').style.display = 'none';
+        }, 3000); // 3000ms = 3 seconds
+    });
+</script>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        const originalTitle = document.title;
+        let timeoutId;
+        document.addEventListener("visibilitychange", function () {
+            if (document.visibilityState === "hidden") {
+                timeoutId = setTimeout(() => {
+                    document.title = " Come back soon 👀";
+                }, 2000);
+            } else {
+                clearTimeout(timeoutId);
+                document.title = originalTitle;
+            }
+        });
+    </script>
+    <!-- Add mouse trail script -->
+    <script src="/static/js/mouseTrail.js"></script>
+</body>
+</html>

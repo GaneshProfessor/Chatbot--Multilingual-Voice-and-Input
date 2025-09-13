@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, render_template
+import logging
 import os
 from openai import OpenAI
 import pyttsx3
@@ -6,6 +7,7 @@ import speech_recognition as sr
 
 app = Flask(__name__)
 
+logging.basicConfig(level=logging.INFO)
 # Initialize OpenAI client with your API key
 Model = "gpt-3.5-turbo"
 api_key = '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'
@@ -31,8 +33,9 @@ def home():
     try:
         return render_template('index.html')
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
+        logging.exception("Exception in home route")
+        return jsonify({'error': 'An internal error has occurred.'}), 500
+        print(f"Exception in home(): {e}")
 @app.route('/query', methods=['POST'])
 def query():
     user_input = request.form.get('text', '')
@@ -47,7 +50,7 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 def get_response(question):
@@ -67,6 +70,7 @@ def home():
     try:
         return render_template('index.html')
     except Exception as e:
+        logging.exception("Exception in home route")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/query', methods=['POST'])
@@ -80,4 +84,4 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

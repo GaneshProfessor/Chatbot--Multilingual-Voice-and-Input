@@ -71,7 +71,7 @@ def home():
         return render_template('index.html')
     except Exception as e:
         logging.exception("Exception in home route")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'An internal error has occurred.'}), 500
 
 @app.route('/query', methods=['POST'])
 def query():

@@ -3,10 +3,15 @@ var recognition;
 var isRecognizing = false;
 
 setTimeout(() => {
-    document.getElementById('welcomeScreen').style.display = 'none';
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    if (welcomeScreen) {
+        welcomeScreen.style.display = 'none';
+    }
     const main = document.getElementById('mainPage');
-    main.style.display = 'block';
-    setTimeout(() => { main.style.opacity = 1; }, 50);
+    if (main) {
+        main.style.display = 'block';
+        setTimeout(() => { main.style.opacity = 1; }, 50);
+    }
 }, 3000);
 
 // Map dropdown language codes to TTS language codes
@@ -32,10 +37,7 @@ function setupRecognition() {
         recognition.onresult = function(event) {
             isRecognizing = false;
             var transcript = event.results[0][0].transcript;
-            const formData = new FormData();
-            formData.append('text', userInput);
-            formData.append('lang', selectedLang);
-
+            document.getElementById('userInput').value = transcript;
             submitForm();
         };
         recognition.onerror = function(event) { isRecognizing = false; console.error('Recognition error: ' + event.error); };
@@ -106,15 +108,26 @@ async function submitForm() {
         formData.append('lang', selectedLang);
 
         const response = await fetch('/query', { method: 'POST', body: formData });
+        
+        // Check if response is ok
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
         removeLoading(loadingIndicator);
 
-        addMessage('bot', data);
-        speak(data, langMap[selectedLang]);
+        // Check if response contains an error
+        if (data.error) {
+            addMessage('error', data.error);
+        } else {
+            addMessage('bot', data);
+            speak(data, langMap[selectedLang]);
+        }
     } catch (error) {
         console.error('Error:', error);
         removeLoading(loadingIndicator);
-        addMessage('error', 'Sorry, there was an error processing your request.');
+        addMessage('error', 'Sorry, there was an error processing your request. Please check your internet connection and try again.');
     }
 
     document.getElementById('userInput').value = '';

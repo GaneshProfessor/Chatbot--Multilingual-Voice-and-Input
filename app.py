@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, render_template
+import logging
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -7,6 +8,7 @@ import speech_recognition as sr
 
 app = Flask(__name__)
 
+logging.basicConfig(level=logging.INFO)
 # Initialize OpenAI client with your API key
 Model = "gpt-3.5-turbo"
 load_dotenv()  # reads the .env file
@@ -33,8 +35,9 @@ def home():
     try:
         return render_template('index.html')
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
+        logging.exception("Exception in home route")
+        return jsonify({'error': 'An internal error has occurred.'}), 500
+        print(f"Exception in home(): {e}")
 @app.route('/query', methods=['POST'])
 def query():
     user_input = request.form.get('text', '')
@@ -49,7 +52,7 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 def get_response(question):
@@ -69,7 +72,8 @@ def home():
     try:
         return render_template('index.html')
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        logging.exception("Exception in home route")
+        return jsonify({'error': 'An internal error has occurred.'}), 500
 
 @app.route('/query', methods=['POST'])
 def query():
@@ -82,4 +86,4 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

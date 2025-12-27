@@ -1,0 +1,156 @@
+/* MOBILE RESPONSIVE OVERRIDES */
+
+/* Force responsive layout on mobile */
+@media screen and (max-width: 768px) {
+    /* Force body to not overflow */
+    body, html {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+    
+    /* Force main container to stack vertically */
+    .main-container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+    
+    /* Force sidebar to full width at top */
+    .sidebar {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        padding: 1rem !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(64, 224, 208, 0.2) !important;
+        order: 1 !important;
+    }
+    
+    /* Force main content to full width below sidebar */
+    .main-content {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
+        order: 2 !important;
+        overflow-y: visible !important;
+        height: auto !important;
+    }
+    
+    /* Make profile smaller */
+    .profile img {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    
+    .profile h2 {
+        font-size: 1.3rem !important;
+    }
+    
+    .profile p {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Stack skills */
+    .skills {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+    }
+    
+    .skill-item {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 0.8rem !important;
+    }
+    
+    /* Make heading smaller */
+    .heading {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .description {
+        font-size: 0.95rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Chat area adjustments */
+    .chat-area {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Stack form elements */
+    #chatForm {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.8rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    #chatForm input[type="text"] {
+        width: 100% !important;
+        font-size: 16px !important;
+        padding: 0.9rem !important;
+    }
+    
+    /* Stack buttons */
+    .button-group {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+    }
+    
+    #chatForm button,
+    #languageSelect {
+        width: 100% !important;
+        padding: 0.9rem !important;
+        font-size: 0.95rem !important;
+    }
+    
+    /* Responses area */
+    #responses {
+        padding: 1rem !important;
+        min-height: auto !important;
+        height: auto !important;
+    }
+    
+    /* Messages */
+    .message {
+        margin: 0.5rem 0 !important;
+        padding: 0.8rem !important;
+    }
+    
+    /* Make welcome screen text fit */
+    .welcome-screen {
+        font-size: 2.5rem !important;
+        padding: 1rem !important;
+    }
+    
+    .welcome-screen h1 {
+        font-size: 2.5rem !important;
+    }
+}
+
+/* Very small screens */
+@media screen and (max-width: 480px) {
+    .welcome-screen,
+    .welcome-screen h1 {
+        font-size: 2rem !important;
+    }
+    
+    .heading {
+        font-size: 1.3rem !important;
+    }
+    
+    .profile img {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
